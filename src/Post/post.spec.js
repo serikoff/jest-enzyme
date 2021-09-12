@@ -12,10 +12,11 @@ describe("should render Post component", () => {
   it("should contain .post wrapper", () => {
     const wrapper = component.find(".post");
     expect(wrapper.length).toBe(1);
+    console.log(component.debug())
   });
 
-  it("should contain link", () => {
-    const wrapper = component.find("a");
+  it("should contain link and href=#", () => {
+    const wrapper = component.find("a[href='#']");
     expect(wrapper.length).toBe(1);
   });
 
@@ -24,5 +25,9 @@ describe("should render Post component", () => {
     component = setUp({ created_at });
     const date = component.find(".date");
     expect(date.text()).toBe(new Date(created_at).toLocaleDateString());
+
+    component = setUp({ created_at: null });
+    const dateNull = component.find(".date");
+    expect(dateNull.text()).toBe('No date');
   });
 });
