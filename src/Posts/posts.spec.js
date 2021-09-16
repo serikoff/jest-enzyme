@@ -1,12 +1,13 @@
 import React from "react";
 import Posts from "./posts";
+import { initState } from "./posts"
 
 const setUp = () => shallow(<Posts />);
 
 describe("Posts component", () => {
   const DEFAULT_PAGE = 10;
   let component;
-  let instance;
+    let instance;
 
   beforeEach(() => {
     component = setUp();
@@ -19,14 +20,14 @@ describe("Posts component", () => {
 
   describe("Post handlers", () => {
     it("should handle search input value", () => {
-      expect(component.state().searchQuery).toBe("");
+      expect(component.state().searchQuery).toBe(initState.searchQuery);
       instance.handleInputChange({ target: { value: "test" } });
       expect(component.state().searchQuery).toBe("test");
     });
 
     it("should handle change of hits per page", () => {
-      expect(component.state().hitsPerPage).toBe(20);
-      instance.handleHitsChange({ target: { value: String(DEFAULT_PAGE) } });
+      expect(component.state().hitsPerPage).toBe(initState.hitsPerPage);
+      instance.handleHitsChange({ target: { value: `${DEFAULT_PAGE}` } });
       expect(component.state().hitsPerPage).toBe(DEFAULT_PAGE);
     });
 

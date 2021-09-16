@@ -7,12 +7,14 @@ import Input from "../Input/input";
 
 import { NEWS, HITS } from "./constants";
 
+export const initState = {
+  searchQuery: "",
+  hitsPerPage: 20,
+  page: 0,
+   };
+
 class Posts extends Component {
-  state = {
-    searchQuery: "",
-    hitsPerPage: 20,
-    page: 0,
-  };
+  state = {...initState}
 
   handleInputChange = ({ target: { value } }) => {
     this.setState({
